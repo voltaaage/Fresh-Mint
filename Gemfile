@@ -40,4 +40,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # AWS File Storage
 gem 'fog-aws'
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.0'
+
+# Environment Variables
+gem 'dotenv'
