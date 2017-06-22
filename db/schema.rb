@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622053725) do
+ActiveRecord::Schema.define(version: 20170622072157) do
 
   create_table "imports", force: :cascade do |t|
     t.string "original_file"
     t.string "processed_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "date"
+    t.string "description"
+    t.float "amount"
+    t.string "category"
+    t.string "original_description"
+    t.string "notes"
+    t.string "transaction_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "import_id"
+    t.index ["import_id"], name: "index_transactions_on_import_id"
   end
 
 end
