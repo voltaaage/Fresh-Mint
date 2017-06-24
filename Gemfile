@@ -19,6 +19,7 @@ gem 'jbuilder', '~> 2.5'
 # Front-end
 gem 'webpacker', '~> 2.0'
 gem 'react-rails'
+gem 'foundation-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
