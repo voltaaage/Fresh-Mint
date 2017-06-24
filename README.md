@@ -1,24 +1,30 @@
-# README
+## Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```sh
+$ bundle
+$ yarn install
+```
 
-Things you may want to cover:
+## Run the application
+This project uses webpacker to compile the React front-end. In development, you'll need to run `./bin/webpack-dev-server` in a separate terminal from `./bin/rails server` to have js files compiled as you make changes.
 
-* Ruby version
+```sh
+./bin/webpack-dev-server
+./bin/rails server
+```
 
-* System dependencies
+Alternatively, you can run Foreman:
 
-* Configuration
+```sh
+foreman start
+```
 
-* Database creation
+The application will run at `http://localhost:5000`
 
-* Database initialization
+## Dev
+In one terminal run:
+```
+./bin/webpack-dev-server --host 127.0.0.1
+```
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

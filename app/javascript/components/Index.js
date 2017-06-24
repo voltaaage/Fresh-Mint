@@ -1,19 +1,22 @@
-var React = require("react")
-var Index = React.createClass({
-  propTypes: {
-    heading: React.PropTypes.string,
-    test: React.PropTypes.bool
-  },
+import React from 'react'
+import PropTypes from 'prop-types'
 
-  render: function() {
+class Index extends React.Component {
+  render () {
     return (
       <div>
+        <div>Your React Component has Rendered!!</div>
         <div>Heading: {this.props.heading}</div>
-        <div>Test: {this.props.test}</div>
-        <div>Body: {this.props.body}</div>
+
+        <div>Published: {this.props.published ? "true" : "false"}</div>
+        <div>Test</div>
       </div>
     );
   }
-});
-module.exports = Index
+}
 
+Index.propTypes = {
+  heading: PropTypes.string,
+  published: PropTypes.bool
+};
+module.exports = Index
