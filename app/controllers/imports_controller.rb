@@ -22,12 +22,21 @@ class ImportsController < ApplicationController
 
   def show
     @import = Import.find_by(id: params[:id])
-    @transactions = Transaction.where(import: @import)
+    @transactions = import_transactions.by_month(import_start_date, import_end_date)
+    @months = import_months
   end
 
   private
 
   def import_params
-    params.require(:import).permit(:original_file)
+    params.require(:import).permit(:original_file, :month, :year)
+  end
+
+  def import_transactions
+    @import_transactions ||= Transaction.where(import: @import)
+  end
+
+  def import_months
+    @import_months ||= @import.months
   end
 end

@@ -1,12 +1,19 @@
-<h3>Import</h3>
-<%= @import.id %> -
-<%= @import.created_at %> -
-<%= @import.original_file.try(:url) %>
+<h3>Import #<%= @import.id %></h3>
+
+<% year = nil %>
+<% @months.each do |month| %>
+  <% if month[:year] != year %>
+    <br />
+    <% year = month[:year] %>
+    <b><%= year %> </b>
+  <% end %>
+  <%= link_to  "-- #{month[:month]}", import_path(@import, { month: month[:month], year: month[:year] }) %>
+<% end %>
 
 <table>
   <% @transactions.each do |transaction| %>
     <tr>
-      <td><%= transaction.date %></td>
+      <td><%= transaction.date.strftime('%m/%d/%Y') %></td>
       <td><%= transaction.description %></td>
       <td><%= transaction.amount %></td>
       <td><%= transaction.category %></td>
