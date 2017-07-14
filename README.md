@@ -5,36 +5,30 @@
   provide a better visual experience in reviewing my expenses. Mint does a poor
 job in displaying month by month information as well as visualizing expenses in
 buckets of categories. This app seeks to improve that.
-- Try out the react-rails gem and weigh the pros/cons vs other implementations
 
 
 ## Setup
 
 ```sh
-$ bundle
-$ yarn install
+$ docker-compose build
+```
+ * in the event that the above does not work, you can still run the necessary
+   steps manually
+
+```sh
+$ docker-compose run --rm web bash
+$ npm install
+$ bundle install
+$ rails db:setup db:migrate
 ```
 
 ## Run the application
-This project uses webpacker to compile the React front-end. In development, you'll need to run `./bin/webpack-dev-server` in a separate terminal from `./bin/rails server` to have js files compiled as you make changes.
+This project uses webpack to compile the React front-end. Running the docker
+instance should compile your assets for you
 
 ```sh
-./bin/webpack-dev-server
-./bin/rails server
+$ docker-compose run --rm --service-ports web
 ```
 
-Alternatively, you can run Foreman:
-
-```sh
-foreman start
-```
-
-The application will run at `http://localhost:5000`
-
-## Dev
-In one terminal run:
-```
-./bin/webpack-dev-server --host 127.0.0.1
-```
-
+The application will run at `http://fresh-mint.docker`
 
