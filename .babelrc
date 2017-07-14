@@ -1,20 +1,8 @@
 {
-  "presets": [
-    ["env", {
-      "modules": false,
-        "targets": {
-          "browsers": "> 1%",
-          "uglify": true
-        },
-        "useBuiltIns": true
-    }],
-    "es2015",
-    "react",
-    "stage-2"
-  ],
-
+  "presets": ["es2015", "react"],
   "plugins": [
-    "syntax-dynamic-import",
-    ["transform-class-properties", { "spec": true }]
+    "transform-object-rest-spread",
+    ["resolver", {"resolveDirs": ["client"]}]
   ]
 }
+

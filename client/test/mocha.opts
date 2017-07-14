@@ -1,0 +1,5 @@
+--compilers js:babel-core/register
+--require jsdom-global/register
+--require client/test
+--recursive client
+client/test/**/*_test.js*
