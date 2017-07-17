@@ -31,6 +31,7 @@ class Home extends Component {
           <Heading>{this.state.title}</Heading>
         </Header>
         <Header pad="medium">
+          <span>Welcome to Fresh-Mint</span>
         </Header>
       </Section>
     )

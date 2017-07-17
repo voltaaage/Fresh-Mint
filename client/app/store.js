@@ -3,9 +3,11 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 // Reducers
 import home from './Home/reducer'
+import layout from './Layout/reducer'
 
 const reducers = combineReducers({
-  home
+  home,
+  layout
 })
 
 const middleware = [thunk]

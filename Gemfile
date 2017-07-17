@@ -51,9 +51,6 @@ gem 'carrierwave', '~> 1.0'
 # Environment Variables
 gem 'dotenv'
 
-# Foundation
-gem 'foundation-rails'
-
 # Lint
 gem 'rubocop', '~> 0.47.1', require: false
 
