@@ -4,7 +4,6 @@ import {
   Anchor,
   Box,
   Header,
-  Footer,
   Icons,
   Layer,
   Menu,
@@ -132,9 +131,24 @@ class Layout extends Component {
     )
   }
 
+  renderToast() {
+    const toast = this.state.toast
+
+    if (_.isEmpty(toast)) {
+      return null
+    }
+
+    return (
+      <Toast size="small" status={toast.status} onClose={this.onToastClose}>
+        {toast.text}
+      </Toast>
+    )
+  }
+
   render() {
     return (
       <Box>
+        {this.renderToast()}
         {this.renderLayer()}
         <Split flex="right">
           {this.renderAppMenu()}

@@ -4,11 +4,10 @@ const actions = {
   setTitle(title) {
     return {
       type: actions.SET_TITLE,
-      payload: errors
+      payload: title
     }
   }
 }
 
 export default actions
-
 

@@ -3,6 +3,7 @@ import page from 'page'
 import client from './client'
 // Components
 import Home from './Home'
+import NewImport from './imports/new'
 
 // GET - /
 page('', () => {
@@ -11,7 +12,7 @@ page('', () => {
 
 // GET - /imports/new
 page(window.env.routes.new_import_path(), () => {
-  client(<Home />)
+  client(<NewImport />)
 })
 
 // GET - /imports/new
