@@ -14,7 +14,7 @@ const client = (components) => {
     <div>
       <Provider store={store}>
         <App style={appStyle}>
-          <Layout user={window.env.user}>
+          <Layout>
             {components}
           </Layout>
         </App>

@@ -93,18 +93,12 @@ class Layout extends Component {
   }
 
   renderAppMenu() {
-    const user = this.props.user
-
-    if (_.isEmpty(user)) {
-      return null
-    }
-
     return (
       <Sidebar fixed size="small" colorIndex="brand">
         <Header pad="small" justify="between" size="small">
           <Menu>
             <Anchor
-              label="Time Management"
+              label="Fresh-Mint"
               href={this.rootPath()}
             />
           </Menu>
@@ -115,47 +109,25 @@ class Layout extends Component {
         <Box flex="grow" justify="start">
           <Menu primary>
             <Anchor
-              label="Team"
-              href={window.env.routes.users_path()}
-              icon={<Icons.Base.User />}
-              onClick={() => this.dispatch(actions.setActiveNav('users'))}
+              label="New Import"
+              href={window.env.routes.new_import_path()}
+              icon={<Icons.Base.DocumentCsv />}
+              onClick={() => this.dispatch(actions.setActiveNav('new_import'))}
               className={
-                this.state.activeNavItem.includes('users') ? 'active' : null
+              this.state.activeNavItem.includes('users') ? 'active' : null
               }
             />
             <Anchor
-              label="Projects"
-              href={window.env.routes.projects_path()}
-              icon={<Icons.Base.Tasks />}
-              onClick={() => this.dispatch(actions.setActiveNav('projects'))}
+              label="All Imports"
+              href={window.env.routes.imports_path()}
+              icon={<Icons.Base.DriveCage />}
+              onClick={() => this.dispatch(actions.setActiveNav('imports'))}
               className={
-                this.state.activeNavItem.includes('projects') ? 'active' : null
-              }
-            />
-            <Anchor
-              label="Forecasting"
-              href={window.env.routes.forecasts_path()}
-              icon={<Icons.Base.Cloud />}
-              onClick={() => this.dispatch(actions.setActiveNav('forecasts'))}
-              className={
-                this.state.activeNavItem.includes('forecasts') ? 'active' : null
-              }
-            />
-            <Anchor
-              label="Reporting"
-              href={window.env.routes.reports_path()}
-              icon={<Icons.Base.LineChart />}
-              onClick={() => this.dispatch(actions.setActiveNav('reports'))}
-              className={
-                this.state.activeNavItem.includes('reports') ? 'active' : null
+              this.state.activeNavItem.includes('projects') ? 'active' : null
               }
             />
           </Menu>
         </Box>
-        <Footer>
-          <Menu label={user.email} icon={<Icons.Base.User />} size="small">
-          </Menu>
-        </Footer>
       </Sidebar>
     )
   }
