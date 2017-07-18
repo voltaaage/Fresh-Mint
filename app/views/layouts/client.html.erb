@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Client</title>
+    <%# <%= stylesheet_link_tag 'client', media: 'all' %1> %>
+    <%= Gon::Base.render_data(namespace: 'env') %>
+    <%= javascript_include_tag 'client', defer: true %>
+  </head>
+  <body>
+    <div id="client"></div>
+  </body>
+</html>
+

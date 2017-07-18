@@ -7,21 +7,20 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
-/yarn-error.log
-
+# Ignore Byebug command history file.
 .byebug_history
-/public/packs
-/node_modules
 
 .env
+node_modules/
+npm-debug.log*
+
+*.bundle.*
+coverage/
+.nyc_output/
+docker-compose.override.yml

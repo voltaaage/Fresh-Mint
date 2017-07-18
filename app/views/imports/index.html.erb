@@ -1,0 +1,11 @@
+Imports
+
+<% @imports.each do |import| %>
+  <p>
+  <%= link_to import_path(import) do %>
+    <%= import.id %> -
+    <%= import.created_at %> -
+    <%= import.original_file.try(:url) %>
+  <% end %>
+  </p>
+<% end %>

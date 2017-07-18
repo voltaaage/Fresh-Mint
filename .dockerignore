@@ -1,0 +1,22 @@
+# .gitignore
+/.bundle
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+.byebug_history
+.env
+node_modules/
+npm-debug.log*
+*.bundle.*
+coverage/
+.nyc_output/
+
+# Docker specific
+.dockerignore
+.git
+.gitignore
+README.md
+Dockerfile*
+docker-compose*
+vendor/

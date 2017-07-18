@@ -1,24 +1,34 @@
-# README
+# Fresh Mint
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Goals
+- Utilize the transaction data that Mint gathers from my personal accounts and
+  provide a better visual experience in reviewing my expenses. Mint does a poor
+job in displaying month by month information as well as visualizing expenses in
+buckets of categories. This app seeks to improve that.
 
-Things you may want to cover:
 
-* Ruby version
+## Setup
 
-* System dependencies
+```sh
+$ docker-compose build
+```
+ * in the event that the above does not work, you can still run the necessary
+   steps manually
 
-* Configuration
+```sh
+$ docker-compose run --rm web bash
+$ npm install
+$ bundle install
+$ rails db:setup db:migrate
+```
 
-* Database creation
+## Run the application
+This project uses webpack to compile the React front-end. Running the docker
+instance should compile your assets for you
 
-* Database initialization
+```sh
+$ docker-compose run --rm --service-ports web
+```
 
-* How to run the test suite
+The application will run at `http://fresh-mint.docker`
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
