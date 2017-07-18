@@ -1,0 +1,51 @@
+import api from 'app/api'
+import layoutActions from 'app/Layout/actions'
+
+const actions = {
+  SET_FILE_UPLOADED: 'SET_FILE_UPLOADED',
+  SET_ERRORS: 'SET_ERRORS',
+  RESET_ERRORS: 'RESET_ERRORS',
+
+  setFileUploaded(uploaded) {
+    return {
+      type: actions.SET_FILE_UPLOADED,
+      payload: uploaded
+    }
+  },
+
+  setErrors(errors) {
+    return {
+      type: actions.SET_ERRORS,
+      payload: errors
+    }
+  },
+
+  resetErrors() {
+    return {
+      type: actions.RESET_ERRORS
+    }
+  },
+
+  uploadTransactions(transactionFile) {
+    return (dispatch) => {
+      dispatch(layoutActions.setLoading(true))
+
+      return api.create(
+        window.env.routes.imports_path(),
+        { transactionFile }
+      ).then((resp) => {
+        dispatch(layoutActions.setLoading(false))
+
+        if (resp.ok) {
+          dispatch(actions.setFileUploaded(resp.body))
+        }
+      }).catch((err) => {
+        dispatch(layoutActions.setLoading(false))
+        dispatch(actions.setErrors(err.body))
+      })
+    }
+  }
+}
+
+export default actions
+

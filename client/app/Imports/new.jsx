@@ -5,8 +5,14 @@ import {
   Heading,
   Section
 } from 'grommet'
+import actions from 'app/Imports/actions'
 
-class Home extends Component {
+class NewImport extends Component {
+  static onFileUpload(e) {
+    const file = e.target.value
+    this.dispatch(actions.setFileUploaded(file))
+  }
+
   constructor(props, context) {
     super(props, context)
     this.state = this.fetchStoreState()
@@ -28,23 +34,24 @@ class Home extends Component {
     return (
       <Section className="home__wrapper">
         <Header pad="medium">
-          <Heading>{this.state.title}</Heading>
+          <Heading>New Import</Heading>
         </Header>
         <Header pad="medium">
-          <span>Welcome to Fresh-Mint</span>
+          <span>Import your transaction spreadsheet here</span>
         </Header>
+        <input type="file" onChange={this.onFileUpload} />
       </Section>
     )
   }
 }
 
-Home.contextTypes = {
+NewImport.contextTypes = {
   store: PropTypes.object
 }
 
-Home.propTypes = {}
+NewImport.propTypes = {}
 
-Home.defaultProps = {}
+NewImport.defaultProps = {}
 
-export default Home
+export default NewImport
 
