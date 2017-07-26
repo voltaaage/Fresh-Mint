@@ -11,12 +11,25 @@ class ImportsController < ApplicationController
   end
 
   def create
-    @import = Import.new(import_params)
+    @import = Import.create
 
-    @import.save
-
-    parse_csv(import_params[:original_file], @import)
-
+    # data = create_params[:data]
+    puts "transactions: #{create_params['transactions']}"
+    # byebug
+    # parse_csv(data, @import)
+    transactions = create_params['transactions']
+    transactions.each do |transaction|
+      # TODO: find a nice dynamic way to create these objects
+      @import.transactions.create(
+        amount: transaction[:amount],
+        category: transaction[:category],
+        date: transaction[:date],
+        description: transaction[:description],
+        notes: transaction[:notes],
+        original_description: transaction[:original_description],
+        transaction_type: transaction[:transaction_type]
+      )
+    end
     redirect_to imports_path
   end
 
@@ -29,7 +42,23 @@ class ImportsController < ApplicationController
   private
 
   def import_params
-    params.require(:import).permit(:original_file, :month, :year)
+    params.require(:import).permit(:month, :year)
+  end
+
+  def create_params
+    params.permit(transactions: transaction_keys)
+  end
+
+  def transaction_keys
+    [
+      :amount,
+      :category,
+      :date,
+      :description,
+      :notes,
+      :original_description,
+      :transaction_type
+    ]
   end
 
   def import_transactions
