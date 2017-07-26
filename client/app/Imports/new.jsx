@@ -6,17 +6,20 @@ import {
   Section
 } from 'grommet'
 import actions from 'app/Imports/actions'
+import {
+  convertCsvResultToTransactions,
+  convertKeysToBackend,
+  parseCsv
+} from './util'
 
 class NewImport extends Component {
-  static onFileUpload(e) {
-    const file = e.target.value
-    this.dispatch(actions.setFileUploaded(file))
-  }
-
   constructor(props, context) {
     super(props, context)
     this.state = this.fetchStoreState()
     this.dispatch = this.context.store.dispatch
+
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onComplete = this.onComplete.bind(this)
   }
 
   componentWillMount() {
@@ -24,6 +27,20 @@ class NewImport extends Component {
     this.unsubscribe = store.subscribe(() => {
       this.setState(this.fetchStoreState())
     })
+  }
+
+  onComplete() {
+    return (result) => {
+      let transactions = convertCsvResultToTransactions(result)
+      transactions = convertKeysToBackend(transactions)
+      this.dispatch(actions.uploadTransactions(transactions))
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault()
+    const file = this.transactionsFile.files[0]
+    parseCsv(file, this.onComplete)
   }
 
   fetchStoreState() {
@@ -39,7 +56,20 @@ class NewImport extends Component {
         <Header pad="medium">
           <span>Import your transaction spreadsheet here</span>
         </Header>
-        <input type="file" onChange={this.onFileUpload} />
+        <form
+          onSubmit={this.onSubmit}
+          encType="multipart/form-data"
+        >
+          <input
+            type="file"
+            accept=".csv"
+            ref={input => this.transactionsFile = input}
+          />
+          <input
+            type="submit"
+            value="submit"
+          />
+        </form>
       </Section>
     )
   }

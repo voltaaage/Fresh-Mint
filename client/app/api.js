@@ -2,9 +2,9 @@ import superagent from 'superagent'
 
 const request = (method, url) => (
   superagent[method](url)
-    .accept('json')
-    .type('json')
-    .set('X-Requested-With', 'XMLHttpRequest')
+  .accept('json')
+  .type('json')
+  .set('X-Requested-With', 'XMLHttpRequest')
 )
 
 const requestCSRF = (method, url) => (

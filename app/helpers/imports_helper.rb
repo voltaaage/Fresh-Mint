@@ -1,5 +1,8 @@
 module ImportsHelper
   def parse_csv(file, import)
+    return
+    # TODO: Deprecate this
+
     transactions = []
     CSV.foreach(file.path) do |row|
       transactions << build_transaction_from_row(row)

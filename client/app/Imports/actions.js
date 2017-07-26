@@ -26,18 +26,16 @@ const actions = {
     }
   },
 
-  uploadTransactions(transactionFile) {
+  uploadTransactions(transactions) {
     return (dispatch) => {
       dispatch(layoutActions.setLoading(true))
 
-      return api.create(
-        window.env.routes.imports_path(),
-        { transactionFile }
-      ).then((resp) => {
+      return api.create(window.env.routes.imports_path(), { transactions })
+      .then((resp) => {
         dispatch(layoutActions.setLoading(false))
 
         if (resp.ok) {
-          dispatch(actions.setFileUploaded(resp.body))
+          // dispatch(actions.setFileUploaded(resp.body))
         }
       }).catch((err) => {
         dispatch(layoutActions.setLoading(false))
