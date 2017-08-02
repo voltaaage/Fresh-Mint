@@ -4,12 +4,11 @@ class ApplicationController < ActionController::Base
   before_action :bootstrap_client, only: :client
 
   def client
-    render template: 'home/index', layout: 'client'
+    render html: nil, layout: 'client'
   end
 
   protected
 
-  # rubocop:disable MethodLength
   def bootstrap_client
     gon.push(
       environment: Rails.env,
@@ -21,5 +20,4 @@ class ApplicationController < ActionController::Base
       }
     )
   end
-  # rubocop:enable MethodLength
 end
