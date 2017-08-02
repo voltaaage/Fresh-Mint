@@ -32,7 +32,7 @@ describe ImportsHelper do
 
       it 'creates a valid date' do
         result = helper.build_transaction_from_row(row)
-        expected_date = Date.new(2017, 02, 19)
+        expected_date = Date.new(2017, 2, 19)
 
         expect(result[:date]).to eq(expected_date)
       end

@@ -4,5 +4,4 @@ class Transaction < ApplicationRecord
   scope :by_month, (lambda do |start_date, end_date|
     where('date > ? AND date < ?', start_date, end_date)
   end)
-
 end
