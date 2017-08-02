@@ -7,8 +7,8 @@ class Import < ApplicationRecord
   def months
     months = transactions.map do |transaction|
       {
-        month: transaction.date.month,
-        year: transaction.date.year
+        month: transaction.date.try(:month),
+        year: transaction.date.try(:year)
       }
     end
     months.uniq!

@@ -13,10 +13,6 @@ class ImportsController < ApplicationController
   def create
     @import = Import.create
 
-    # data = create_params[:data]
-    puts "transactions: #{create_params['transactions']}"
-    # byebug
-    # parse_csv(data, @import)
     transactions = create_params['transactions']
     transactions.each do |transaction|
       # TODO: find a nice dynamic way to create these objects
@@ -37,6 +33,13 @@ class ImportsController < ApplicationController
     @import = Import.find_by(id: params[:id])
     @transactions = import_transactions.by_month(import_start_date, import_end_date)
     @months = import_months
+    data = {
+      importId: @import.id,
+      transactions: @transactions,
+      months: @months
+    }
+
+    render json: data, status: :ok
   end
 
   private
