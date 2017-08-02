@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+  repo_name = '#{repo_name}/#{repo_name}' unless repo_name.include?('/')
+  'https://github.com/#{repo_name}.git'
 end
 
 gem 'rails', '~> 5.1.1'
@@ -62,4 +62,3 @@ gem 'js-routes', '~> 1.3.2'
 
 # Sass-globbing
 gem 'sass-globbing', '~> 1.1'
-

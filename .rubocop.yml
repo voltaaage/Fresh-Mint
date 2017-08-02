@@ -7,6 +7,8 @@ AllCops:
     - config/routes.rb
     - db/schema.rb
     - node_modules/**/*.rb
+    - bin/*
+    - Gemfile
 Style/Documentation:
   Enabled: false
 Style/AlignParameters:
@@ -15,8 +17,11 @@ Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FrozenStringLiteralComment:
   Enabled: false
+Style/Lambda:
+  EnforcedStyle: literal
 Bundler/OrderedGems:
   Enabled: false
 Metrics/LineLength:
   Exclude:
+    - config/initializers/devise.rb
 inherit_from: .rubocop_todo.yml
