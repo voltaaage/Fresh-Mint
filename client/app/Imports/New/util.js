@@ -1,5 +1,5 @@
 import Papa from 'papaparse'
-import actions from 'app/Imports/actions'
+import actions from './actions'
 import camelCaseKeysDeep from 'camelcase-keys-deep'
 import decamelizeKeysDeep from 'decamelize-keys-deep'
 

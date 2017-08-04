@@ -4,12 +4,12 @@ import logger from 'redux-logger'
 // Reducers
 import home from './Home/reducer'
 import layout from './Layout/reducer'
-import showImport from './Import/reducer'
+import imports from './Imports/reducers'
 
 const reducers = combineReducers({
   home,
   layout,
-  showImport
+  imports
 })
 
 const middleware = [thunk]

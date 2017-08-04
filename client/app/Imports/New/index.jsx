@@ -5,7 +5,7 @@ import {
   Heading,
   Section
 } from 'grommet'
-import actions from 'app/Imports/actions'
+import actions from './actions'
 import {
   convertCsvResultToTransactions,
   convertKeysToBackend,
