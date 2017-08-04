@@ -33,7 +33,7 @@ class Import extends Component {
   }
 
   fetchStoreState() {
-    return this.context.store.getState().showImport
+    return this.context.store.getState().imports.show
   }
 
   renderTransactions() {

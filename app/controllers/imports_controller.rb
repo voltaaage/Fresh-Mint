@@ -4,6 +4,7 @@ class ImportsController < ApplicationController
 
   def index
     @imports = Import.all
+    render json: @imports, status: :ok
   end
 
   def new
