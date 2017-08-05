@@ -35,7 +35,8 @@ const actions = {
         dispatch(layoutActions.setLoading(false))
 
         if (resp.ok) {
-          // dispatch(actions.setFileUploaded(resp.body))
+          const newImportPath = window.env.routes.import_path(resp.body.id)
+          dispatch(layoutActions.setRedirect(newImportPath))
         }
       }).catch((err) => {
         dispatch(layoutActions.setLoading(false))

@@ -27,7 +27,8 @@ class ImportsController < ApplicationController
         transaction_type: transaction[:transaction_type]
       )
     end
-    redirect_to imports_path
+
+    render json: @import, status: :ok
   end
 
   def show
