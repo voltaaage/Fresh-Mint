@@ -6,6 +6,8 @@ const actions = {
   SET_IMPORT_ID: 'SET_IMPORT_ID',
   SET_TRANSACTIONS: 'SET_TRANSACTIONS',
   SET_MONTHS: 'SET_MONTHS',
+  SET_MONTH: 'SET_MONTH',
+  SET_YEAR: 'SET_YEAR',
 
   setImportId(importId) {
     return {
@@ -28,11 +30,28 @@ const actions = {
     }
   },
 
-  getImport({ id }) {
+  setMonth(month) {
+    return {
+      type: actions.SET_MONTH,
+      payload: month
+    }
+  },
+
+  setYear(year) {
+    return {
+      type: actions.SET_YEAR,
+      payload: year
+    }
+  },
+
+  getImport({id, month, year}) {
     return (dispatch) => {
       dispatch(layoutActions.setLoading(true))
 
-      return api.show(window.env.routes.import_path(id)).then((resp) => {
+      return api.show(window.env.routes.import_path(id), {
+        month,
+        year
+      }).then((resp) => {
         dispatch(layoutActions.setLoading(false))
 
         if (resp.ok) {

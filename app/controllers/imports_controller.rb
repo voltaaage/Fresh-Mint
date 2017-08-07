@@ -17,10 +17,11 @@ class ImportsController < ApplicationController
     transactions = create_params['transactions']
     transactions.each do |transaction|
       # TODO: find a nice dynamic way to create these objects
+      date = Date.strptime(transaction[:date], '%m/%d/%Y')
       @import.transactions.create(
         amount: transaction[:amount],
         category: transaction[:category],
-        date: transaction[:date],
+        date: date,
         description: transaction[:description],
         notes: transaction[:notes],
         original_description: transaction[:original_description],
@@ -33,13 +34,7 @@ class ImportsController < ApplicationController
 
   def show
     @import = Import.find_by(id: params[:id])
-    @transactions = import_transactions.by_month(import_start_date, import_end_date)
-    @months = import_months
-    data = {
-      importId: @import.id,
-      transactions: @transactions,
-      months: @months
-    }
+    data = import_data_serializer(@import)
 
     render json: data, status: :ok
   end
@@ -64,13 +59,5 @@ class ImportsController < ApplicationController
       :original_description,
       :transaction_type
     ]
-  end
-
-  def import_transactions
-    @import_transactions ||= Transaction.where(import: @import)
-  end
-
-  def import_months
-    @import_months ||= @import.months
   end
 end

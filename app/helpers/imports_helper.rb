@@ -11,14 +11,26 @@ module ImportsHelper
   end
 
   def month_or_default
-    return params['month'].to_i if params['month']
+    return Date.current.month unless params['month']
 
-    Time.zone.today.month
+    params['month'].to_i
   end
 
   def year_or_default
-    return params['year'].to_i if params['year']
+    return Date.current.year unless params['year']
 
-    Time.zone.today.year
+    params['year'].to_i
+  end
+
+  def import_data_serializer(import)
+    transactions = Transaction
+      .where(import: import)
+      .by_month(import_start_date, import_end_date)
+
+    {
+      import_id: import.id,
+      transactions: transactions,
+      months: import.months
+    }
   end
 end

@@ -11,6 +11,6 @@ class Import < ApplicationRecord
         year: transaction.date.try(:year)
       }
     end
-    months.uniq!
+    months.uniq!.sort{|a, b| b[:year] <=> a[:year]}
   end
 end

@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
+  Accordion,
+  AccordionPanel,
   Article,
+  Box,
+  Columns,
   Header,
   Heading,
+  Label,
   Section,
   Table,
-  TableRow
+  TableRow,
+  Value
 } from 'grommet'
 
 import actions from './actions'
@@ -25,11 +31,25 @@ class Import extends Component {
       this.setState(this.fetchStoreState())
     })
 
-    this.dispatch(actions.getImport({ id: this.props.id }))
+    this.dispatch(actions.getImport({
+      id: this.props.id,
+      month: this.state.month,
+      year: this.state.year
+    }))
   }
 
   componentWillUnmount() {
     this.unsubscribe()
+  }
+
+  onMonthClick(month, year) {
+    return (() => {
+      this.dispatch(actions.getImport({
+        id: this.props.id,
+        month,
+        year
+      }))
+    })
   }
 
   fetchStoreState() {
@@ -37,20 +57,46 @@ class Import extends Component {
   }
 
   renderTransactions() {
-    const transactions = this.state.transactions
-    console.log(transactions)
+    return this.state.transactions.map(transaction => {
+      const transactionDate = new Date(transaction.date)
+      return (
+        <TableRow key={transaction.id}>
+          <td>{transactionDate.toDateString()}</td>
+          <td>{transaction.description}</td>
+          <td>{transaction.amount}</td>
+          <td>{transaction.category}</td>
+          <td>{transaction.originalDescription}</td>
+          <td>{transaction.notes}</td>
+          <td>{transaction.transactionType}</td>
+        </TableRow>
+      )
+    })
+  }
 
-    return transactions.map(transaction => (
-      <TableRow key={transaction.id}>
-        <td>{transaction.date}</td>
-        <td>{transaction.description}</td>
-        <td>{transaction.amount}</td>
-        <td>{transaction.category}</td>
-        <td>{transaction.originalDescription}</td>
-        <td>{transaction.notes}</td>
-        <td>{transaction.transactionType}</td>
-      </TableRow>
-    ))
+  renderMonths() {
+    let year = 2017
+    return this.state.months.map(month => {
+      const label= `${month.month}/${month.year}`
+      return (
+        <Box
+          align='center'
+          colorIndex='light-1'
+          direction='row'
+          justify='start'
+          key={label}
+          margin='small'
+          pad='small'
+          onClick={this.onMonthClick(month.month, month.year)}
+          wrap={true}
+        >
+          <Value
+            value={label}
+            colorIndex='accent-2'
+            size='small'
+          />
+        </Box>
+      )
+    })
   }
 
   render() {
@@ -59,22 +105,39 @@ class Import extends Component {
         <Header pad="medium">
           <Heading>Import Transactions</Heading>
         </Header>
-        <Table>
-          <thead>
-            <tr>
-              <th>DATE</th>
-              <th>DESCRIPTION</th>
-              <th>AMOUNT</th>
-              <th>CATEGORY</th>
-              <th>ORIGINAL DESCRIPTION</th>
-              <th>NOTES</th>
-              <th>TRANSACTION TYPE</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderTransactions()}
-          </tbody>
-        </Table>
+        <Accordion openMulti={true}>
+          <AccordionPanel heading='Months'>
+            <Box
+              align='center'
+              colorIndex='light-2'
+              direction='row'
+              justify='start'
+              margin='small'
+              pad='small'
+              wrap={true}
+            >
+              {this.renderMonths()}
+            </Box>
+          </AccordionPanel>
+          <AccordionPanel heading='Transactions'>
+            <Table>
+              <thead>
+                <tr>
+                  <th>DATE</th>
+                  <th>DESCRIPTION</th>
+                  <th>AMOUNT</th>
+                  <th>CATEGORY</th>
+                  <th>ORIGINAL DESCRIPTION</th>
+                  <th>NOTES</th>
+                  <th>TRANSACTION TYPE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderTransactions()}
+              </tbody>
+            </Table>
+          </AccordionPanel>
+        </Accordion>
       </Section>
     )
   }

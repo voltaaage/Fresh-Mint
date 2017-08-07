@@ -1,41 +1,55 @@
 require 'rails_helper'
 
 describe ImportsHelper do
-  describe 'build_transaction_from_row' do
-    context 'when the row is a header row' do
-      let(:row) do
-        [
-          'Date',
-          'Description',
-          'Original Description',
-          'Amount',
-          'Transaction Type',
-          'Category',
-          'Account Name',
-          'Labels',
-          'Notes'
-        ]
-      end
+  let!(:params) do
+    {
+      month: '1',
+      year: '2017'
+    }.with_indifferent_access
+  end
 
-      it 'returns nil if row[0] is date' do
-        expect(helper.build_transaction_from_row(row)).to be_nil
-      end
+  describe '#import_start_date' do
+    it 'returns a date' do
+      expect(import_start_date.class).to eq(Date)
     end
 
-    context 'when the row is a valid transaction' do
-      let(:row) do
-        [
-          '2/19/2017',
-          'AAAA'
-        ]
-      end
+    it 'returns the first day of the params month' do
+      expect(import_start_date.day).to eq(1)
+    end
+  end
 
-      it 'creates a valid date' do
-        result = helper.build_transaction_from_row(row)
-        expected_date = Date.new(2017, 2, 19)
+  describe 'import_end_date' do
+    it 'returns the last date of the params month' do
+      expect(import_end_date.day).to be > 28
+    end
+  end
 
-        expect(result[:date]).to eq(expected_date)
-      end
+  describe '#month_or_default' do
+    it 'returns the month as an integer' do
+      expect(month_or_default.class).to eq(Fixnum)
+    end
+
+    it 'returns the current month if no month is specified' do
+      params[:month] = nil
+      expect(month_or_default).to eq(Date.current.month)
+    end
+  end
+
+  describe '#year_or_default' do
+    it 'returns the year as an integer' do
+      expect(year_or_default.class).to eq(Fixnum)
+    end
+
+    it 'returns the current year if no year is specified' do
+      params[:year] = nil
+      expect(year_or_default).to eq(Date.current.year)
+    end
+  end
+
+  describe '#import_data_serializer' do
+    let(:import) { Import.first }
+    it 'creates a hash with the correct keys' do
+      expect(import_data_serializer(import))
     end
   end
 end

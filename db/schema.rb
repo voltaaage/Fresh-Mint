@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20170622072157) do
     t.string "transaction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "import_id"
+    t.bigint "import_id"
     t.index ["import_id"], name: "index_transactions_on_import_id"
   end
 
+  add_foreign_key "transactions", "imports"
 end
