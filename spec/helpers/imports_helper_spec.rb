@@ -47,9 +47,13 @@ describe ImportsHelper do
   end
 
   describe '#import_data_serializer' do
-    let(:import) { Import.first }
+    let!(:import) { create(:import) }
+    let!(:transactions) { create_list(:transaction, 5, import: import) }
+
     it 'creates a hash with the correct keys' do
-      expect(import_data_serializer(import))
+      expect(import_data_serializer(import).key?(:import_id)).to eq(true)
+      expect(import_data_serializer(import).key?(:transactions)).to eq(true)
+      expect(import_data_serializer(import).key?(:months)).to eq(true)
     end
   end
 end

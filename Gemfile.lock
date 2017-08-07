@@ -81,7 +81,10 @@ GEM
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
-    faker (1.7.3)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
+    faker (1.8.4)
       i18n (~> 0.5)
     ffi (1.9.18)
     fog-aws (1.4.0)
@@ -107,7 +110,7 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
-    i18n (0.8.4)
+    i18n (0.8.6)
     ipaddress (0.8.3)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -272,7 +275,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   dotenv
-  factory_girl
+  factory_girl_rails
   faker
   fog-aws
   gon (~> 6.1.0)

@@ -3,32 +3,20 @@ import actions from './actions'
 const today = new Date
 
 export const initialState = {
-  transactions: [],
-  importId: '',
-  months: [],
+  transactionsImport: {
+    transactions: [],
+    importId: '',
+    months: []
+  },
   month: today.getMonth() + 1,
   year: today.getFullYear()
 }
 
 const reducerMap = {
-  [actions.SET_IMPORT_ID](state, action) {
+  [actions.SET_TRANSACTIONS_IMPORT](state, action) {
     return {
       ...state,
-      importId: action.payload
-    }
-  },
-
-  [actions.SET_TRANSACTIONS](state, action) {
-    return {
-      ...state,
-      transactions: action.payload
-    }
-  },
-
-  [actions.SET_MONTHS](state, action) {
-    return {
-      ...state,
-      months: action.payload
+      transactionsImport: action.payload
     }
   },
 

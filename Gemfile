@@ -30,7 +30,7 @@ group :test do
   gem 'simplecov', '~> 0.13.0', require: false
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 group :development do

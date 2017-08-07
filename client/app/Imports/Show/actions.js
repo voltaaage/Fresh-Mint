@@ -3,30 +3,14 @@ import layoutActions from 'app/Layout/actions'
 import camelcaseKeysDeep from 'camelcase-keys-deep'
 
 const actions = {
-  SET_IMPORT_ID: 'SET_IMPORT_ID',
-  SET_TRANSACTIONS: 'SET_TRANSACTIONS',
-  SET_MONTHS: 'SET_MONTHS',
+  SET_TRANSACTIONS_IMPORT: 'SET_TRANSACTIONS_IMPORT',
   SET_MONTH: 'SET_MONTH',
   SET_YEAR: 'SET_YEAR',
 
-  setImportId(importId) {
+  setTransactionsImport(transactionsImport) {
     return {
-      type: actions.SET_IMPORT_ID,
-      payload: importId
-    }
-  },
-
-  setTransactions(transactions) {
-    return {
-      type: actions.SET_TRANSACTIONS,
-      payload: transactions
-    }
-  },
-
-  setMonths(months) {
-    return {
-      type: actions.SET_MONTHS,
-      payload: months
+      type: actions.SET_TRANSACTIONS_IMPORT,
+      payload: transactionsImport
     }
   },
 
@@ -56,10 +40,7 @@ const actions = {
 
         if (resp.ok) {
           const response = camelcaseKeysDeep(resp.body)
-
-          dispatch(actions.setImportId(response.importId))
-          dispatch(actions.setTransactions(response.transactions))
-          dispatch(actions.setMonths(response.months))
+          dispatch(actions.setTransactionsImport(response))
         }
       }).catch(() => {
         dispatch(layoutActions.setLoading(false))

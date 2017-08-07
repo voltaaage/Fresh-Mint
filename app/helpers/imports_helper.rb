@@ -24,8 +24,8 @@ module ImportsHelper
 
   def import_data_serializer(import)
     transactions = Transaction
-      .where(import: import)
-      .by_month(import_start_date, import_end_date)
+                   .where(import: import)
+                   .by_month(import_start_date, import_end_date)
 
     {
       import_id: import.id,

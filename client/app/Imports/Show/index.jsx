@@ -57,7 +57,7 @@ class Import extends Component {
   }
 
   renderTransactions() {
-    return this.state.transactions.map(transaction => {
+    return this.state.transactionsImport.transactions.map(transaction => {
       const transactionDate = new Date(transaction.date)
       return (
         <TableRow key={transaction.id}>
@@ -75,7 +75,7 @@ class Import extends Component {
 
   renderMonths() {
     let year = 2017
-    return this.state.months.map(month => {
+    return this.state.transactionsImport.months.map(month => {
       const label= `${month.month}/${month.year}`
       return (
         <Box
