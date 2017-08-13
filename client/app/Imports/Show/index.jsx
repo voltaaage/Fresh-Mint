@@ -96,6 +96,7 @@ class Import extends Component {
   renderMonths(yearMonths) {
     return yearMonths.months.map((month) => (
       <Button
+        bsSize='small'
         key={month}
         onClick={this.onMonthClick(month, yearMonths.year)}
       >
@@ -124,7 +125,6 @@ class Import extends Component {
               {this.renderYears()}
             </Box>
           </AccordionPanel>
-          <AccordionPanel heading='Transactions'>
             <Table>
               <thead>
                 <tr>
@@ -141,7 +141,6 @@ class Import extends Component {
                 {this.renderTransactions()}
               </tbody>
             </Table>
-          </AccordionPanel>
         </Accordion>
       </Section>
     )

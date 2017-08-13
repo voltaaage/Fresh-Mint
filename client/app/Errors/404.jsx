@@ -1,17 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Headline,
-  Icons,
-  Section
-} from 'grommet'
 
 const NotFound = ({ path }) => (
-  <Section align="center">
-    <Headline size="large">404.</Headline>
-    <Icons.Status size="large" value="warning" />
+  <div>
+    <h1>404.</h1>
     <p>The requested URL <em>{path}</em> was not found.</p>
-  </Section>
+  </div>
 )
 
 NotFound.propTypes = {

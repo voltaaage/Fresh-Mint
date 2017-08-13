@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  Header,
-  Heading,
-  Section
-} from 'grommet'
 
 class Home extends Component {
   constructor(props, context) {
@@ -26,14 +21,14 @@ class Home extends Component {
 
   render() {
     return (
-      <Section className="home__wrapper">
-        <Header pad="medium">
-          <Heading>{this.state.title}</Heading>
-        </Header>
-        <Header pad="medium">
+      <div>
+        <h1>
+          {this.state.title}
+        </h1>
+        <h2>
           <span>Welcome to Fresh-Mint</span>
-        </Header>
-      </Section>
+        </h2>
+      </div>
     )
   }
 }

@@ -31,7 +31,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "grommet": "^1.4.1",
+    "grommet": "^1.6.0",
     "jsdom": "9.11.0",
     "jsdom-global": "2.1.1",
     "json-loader": "^0.5.4",
@@ -46,6 +46,7 @@
     "query-string": "^4.3.4",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.4.2",
+    "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
@@ -57,7 +58,5 @@
     "superagent": "^3.4.1",
     "webpack": "^2.7.0"
   },
-  "dependencies": {
-    "react-bootstrap": "^0.31.1"
-  }
+  "dependencies": {}
 }
