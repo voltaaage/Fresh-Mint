@@ -30,7 +30,7 @@ module ImportsHelper
     {
       import_id: import.id,
       transactions: transactions,
-      months: import.months
+      years_months: import.years_months_collection
     }
   end
 end

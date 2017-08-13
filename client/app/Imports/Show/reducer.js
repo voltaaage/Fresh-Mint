@@ -6,7 +6,7 @@ export const initialState = {
   transactionsImport: {
     transactions: [],
     importId: '',
-    months: []
+    yearsMonths: []
   },
   month: today.getMonth() + 1,
   year: today.getFullYear()

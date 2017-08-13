@@ -14,6 +14,11 @@ import {
   TableRow,
   Value
 } from 'grommet'
+import {
+  Button,
+  ButtonGroup,
+  ButtonToolbar
+} from 'react-bootstrap'
 
 import actions from './actions'
 import layoutActions from 'app/Layout/actions'
@@ -73,30 +78,30 @@ class Import extends Component {
     })
   }
 
-  renderMonths() {
+  renderYears() {
     let year = 2017
-    return this.state.transactionsImport.months.map(month => {
-      const label= `${month.month}/${month.year}`
-      return (
-        <Box
-          align='center'
-          colorIndex='light-1'
-          direction='row'
-          justify='start'
-          key={label}
-          margin='small'
-          pad='small'
-          onClick={this.onMonthClick(month.month, month.year)}
-          wrap={true}
-        >
-          <Value
-            value={label}
-            colorIndex='accent-2'
-            size='small'
-          />
-        </Box>
-      )
-    })
+    const yearsMonths = this.state.transactionsImport.yearsMonths
+    return yearsMonths.map((yearMonths) => (
+      <div key={yearMonths.year}>
+        {yearMonths.year}
+        <ButtonToolbar>
+          <ButtonGroup>
+            {this.renderMonths(yearMonths)}
+          </ButtonGroup>
+        </ButtonToolbar>
+      </div>
+    ))
+  }
+
+  renderMonths(yearMonths) {
+    return yearMonths.months.map((month) => (
+      <Button
+        key={month}
+        onClick={this.onMonthClick(month, yearMonths.year)}
+      >
+        {month}
+      </Button>
+    ))
   }
 
   render() {
@@ -116,7 +121,7 @@ class Import extends Component {
               pad='small'
               wrap={true}
             >
-              {this.renderMonths()}
+              {this.renderYears()}
             </Box>
           </AccordionPanel>
           <AccordionPanel heading='Transactions'>
