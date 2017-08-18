@@ -7,6 +7,8 @@ import {
   Header,
   Heading,
   Section,
+  Tabs,
+  Tab,
   Table,
   TableRow
 } from 'grommet'
@@ -17,6 +19,7 @@ import {
 } from 'react-bootstrap'
 
 import actions from './actions'
+import TransactionTable from './transactionTable.jsx'
 
 class Import extends Component {
   constructor(props, context) {
@@ -118,23 +121,15 @@ class Import extends Component {
               {this.renderYears()}
             </Box>
           </AccordionPanel>
-          <Table>
-            <thead>
-              <tr>
-                <th>DATE</th>
-                <th>DESCRIPTION</th>
-                <th>AMOUNT</th>
-                <th>CATEGORY</th>
-                <th>ORIGINAL DESCRIPTION</th>
-                <th>NOTES</th>
-                <th>TRANSACTION TYPE</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.renderTransactions()}
-            </tbody>
-          </Table>
         </Accordion>
+        <Tabs justify="start">
+          <Tab title="Transactions">
+            <TransactionTable transactions={this.state.transactionsImport.transactions} />
+          </Tab>
+          <Tab title="Categories">
+            test
+          </Tab>
+        </Tabs>
       </Section>
     )
   }
