@@ -8,6 +8,6 @@ FactoryGirl.define do
     category CATEGORIES[CATEGORIES.keys.sample].sample
     original_description Faker::HowIMetYourMother.catch_phrase
     notes Faker::HowIMetYourMother.character
-    transaction_type ['credit', 'debit'].sample
+    transaction_type %w(credit debit).sample
   end
 end

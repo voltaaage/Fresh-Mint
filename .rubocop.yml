@@ -24,4 +24,9 @@ Bundler/OrderedGems:
 Metrics/LineLength:
   Exclude:
     - config/initializers/devise.rb
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
 inherit_from: .rubocop_todo.yml

@@ -26,7 +26,7 @@ describe ImportsHelper do
 
   describe '#month_or_default' do
     it 'returns the month as an integer' do
-      expect(month_or_default.class).to eq(Fixnum)
+      expect(month_or_default.class).to eq(Integer)
     end
 
     it 'returns the current month if no month is specified' do
@@ -37,7 +37,7 @@ describe ImportsHelper do
 
   describe '#year_or_default' do
     it 'returns the year as an integer' do
-      expect(year_or_default.class).to eq(Fixnum)
+      expect(year_or_default.class).to eq(Integer)
     end
 
     it 'returns the current year if no year is specified' do
@@ -53,7 +53,7 @@ describe ImportsHelper do
     it 'creates a hash with the correct keys' do
       expect(import_data_serializer(import).key?(:import_id)).to eq(true)
       expect(import_data_serializer(import).key?(:transactions)).to eq(true)
-      expect(import_data_serializer(import).key?(:months)).to eq(true)
+      expect(import_data_serializer(import).key?(:years_months)).to eq(true)
     end
   end
 end

@@ -21,7 +21,7 @@ class Import < ApplicationRecord
       add_month(years_months_collection, date) if date
     end
 
-    years_months_collection.sort!{|a, b| b[:year] <=> a[:year]}
+    years_months_collection.sort! { |a, b| b[:year] <=> a[:year] }
     years_months_collection.each do |years_months|
       years_months[:months].sort!
     end
@@ -36,7 +36,7 @@ class Import < ApplicationRecord
     year_index = find_year_index(years_months_collection, transaction_year)
 
     if year_index
-      if !years_months_collection[year_index][:months].include?(transaction_month)
+      unless years_months_collection[year_index][:months].include?(transaction_month)
         years_months_collection[year_index][:months] << transaction_month
       end
     else
@@ -48,6 +48,6 @@ class Import < ApplicationRecord
   end
 
   def find_year_index(years_months_collection, year)
-    years_months_collection.find_index{ |year_collection| year_collection[:year] == year }
+    years_months_collection.find_index { |year_collection| year_collection[:year] == year }
   end
 end

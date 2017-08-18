@@ -25,4 +25,3 @@ task :tests do
 
   raise errors.join("\n") if errors.any?
 end
-
