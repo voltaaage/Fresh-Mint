@@ -1,7 +1,7 @@
 import actions from './actions'
 
 export const initialState = {
-  imports: [],
+  imports: []
 }
 
 const reducerMap = {

@@ -1,4 +1,4 @@
-import actions from 'app/Imports/actions'
+import actions from 'app/Imports/New/actions'
 import api from 'app/api'
 import layoutActions from 'app/Layout/actions'
 import sinon from 'sinon'
@@ -57,7 +57,7 @@ describe('Imports actions', () => {
           expect(messages.length).to.equal(3)
           expect(messages[0]).to.eql(layoutActions.setLoading(true))
           expect(messages[1]).to.eql(layoutActions.setLoading(false))
-          expect(messages[2]).to.eql(actions.setFileUploaded(file))
+          expect(messages[2]).to.eql(layoutActions.setRedirect('/import'))
         })
       ))
     })

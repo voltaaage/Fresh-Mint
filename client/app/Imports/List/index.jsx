@@ -26,8 +26,12 @@ class ImportsList extends Component {
     this.dispatch(actions.getImports())
   }
 
+  fetchStoreState() {
+    return this.context.store.getState().imports.list
+  }
+
   renderImports() {
-    return this.state.imports.map(csvImport => {
+    return this.state.imports.map((csvImport) => {
       const label = `Import ${csvImport.id}`
       const id = csvImport.id
       return (
@@ -39,10 +43,6 @@ class ImportsList extends Component {
         </ListItem>
       )
     })
-  }
-
-  fetchStoreState() {
-    return this.context.store.getState().imports.list
   }
 
   render() {
@@ -68,5 +68,3 @@ ImportsList.propTypes = {}
 ImportsList.defaultProps = {}
 
 export default ImportsList
-
-

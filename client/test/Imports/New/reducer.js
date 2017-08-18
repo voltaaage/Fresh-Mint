@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import reducer, { initialState } from 'app/Imports/reducer'
-import actions from 'app/Imports/actions'
+import reducer, { initialState } from 'app/Imports/New/reducer'
+import actions from 'app/Imports/New/actions'
 
 describe('Layout reducer', () => {
   context('SET_FILE_UPLOADED', () => {

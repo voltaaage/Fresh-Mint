@@ -3,16 +3,12 @@ import PropTypes from 'prop-types'
 import {
   Accordion,
   AccordionPanel,
-  Article,
   Box,
-  Columns,
   Header,
   Heading,
-  Label,
   Section,
   Table,
-  TableRow,
-  Value
+  TableRow
 } from 'grommet'
 import {
   Button,
@@ -21,7 +17,6 @@ import {
 } from 'react-bootstrap'
 
 import actions from './actions'
-import layoutActions from 'app/Layout/actions'
 
 class Import extends Component {
   constructor(props, context) {
@@ -62,7 +57,7 @@ class Import extends Component {
   }
 
   renderTransactions() {
-    return this.state.transactionsImport.transactions.map(transaction => {
+    return this.state.transactionsImport.transactions.map((transaction) => {
       const transactionDate = new Date(transaction.date)
       return (
         <TableRow key={transaction.id}>
@@ -79,9 +74,8 @@ class Import extends Component {
   }
 
   renderYears() {
-    let year = 2017
     const yearsMonths = this.state.transactionsImport.yearsMonths
-    return yearsMonths.map((yearMonths) => (
+    return yearsMonths.map(yearMonths => (
       <div key={yearMonths.year}>
         {yearMonths.year}
         <ButtonToolbar>
@@ -94,9 +88,9 @@ class Import extends Component {
   }
 
   renderMonths(yearMonths) {
-    return yearMonths.months.map((month) => (
+    return yearMonths.months.map(month => (
       <Button
-        bsSize='small'
+        bsSize="small"
         key={month}
         onClick={this.onMonthClick(month, yearMonths.year)}
       >
@@ -111,36 +105,35 @@ class Import extends Component {
         <Header pad="medium">
           <Heading>Import Transactions</Heading>
         </Header>
-        <Accordion openMulti={true}>
-          <AccordionPanel heading='Months'>
+        <Accordion>
+          <AccordionPanel heading="Months">
             <Box
-              align='center'
-              colorIndex='light-2'
-              direction='row'
-              justify='start'
-              margin='small'
-              pad='small'
-              wrap={true}
+              align="center"
+              colorIndex="light-2"
+              direction="row"
+              justify="start"
+              margin="small"
+              pad="small"
             >
               {this.renderYears()}
             </Box>
           </AccordionPanel>
-            <Table>
-              <thead>
-                <tr>
-                  <th>DATE</th>
-                  <th>DESCRIPTION</th>
-                  <th>AMOUNT</th>
-                  <th>CATEGORY</th>
-                  <th>ORIGINAL DESCRIPTION</th>
-                  <th>NOTES</th>
-                  <th>TRANSACTION TYPE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderTransactions()}
-              </tbody>
-            </Table>
+          <Table>
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>DESCRIPTION</th>
+                <th>AMOUNT</th>
+                <th>CATEGORY</th>
+                <th>ORIGINAL DESCRIPTION</th>
+                <th>NOTES</th>
+                <th>TRANSACTION TYPE</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderTransactions()}
+            </tbody>
+          </Table>
         </Accordion>
       </Section>
     )

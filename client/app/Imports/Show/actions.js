@@ -28,7 +28,7 @@ const actions = {
     }
   },
 
-  getImport({id, month, year}) {
+  getImport({ id, month, year }) {
     return (dispatch) => {
       dispatch(layoutActions.setLoading(true))
 
@@ -46,7 +46,7 @@ const actions = {
         dispatch(layoutActions.setLoading(false))
       })
     }
-  },
+  }
 }
 
 export default actions

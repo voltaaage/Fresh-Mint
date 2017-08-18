@@ -1,6 +1,5 @@
 import api from 'app/api'
 import layoutActions from 'app/Layout/actions'
-import camelcaseKeysDeep from 'camelcase-keys-deep'
 
 import { parseImports } from './util'
 
@@ -24,11 +23,11 @@ const actions = {
         if (resp.ok) {
           dispatch(actions.setImports(parseImports(resp.body)))
         }
-      }).catch((err) => {
+      }).catch(() => {
         dispatch(layoutActions.setLoading(false))
       })
     }
-  },
+  }
 }
 
 export default actions

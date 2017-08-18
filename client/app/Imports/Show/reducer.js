@@ -1,6 +1,6 @@
 import actions from './actions'
 
-const today = new Date
+const today = new Date()
 
 export const initialState = {
   transactionsImport: {

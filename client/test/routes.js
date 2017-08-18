@@ -2,6 +2,7 @@
 export const routes = [
   'new_import',
   'imports',
+  'import',
   'home',
   'root'
 ]

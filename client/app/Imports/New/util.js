@@ -1,12 +1,11 @@
 import Papa from 'papaparse'
-import actions from './actions'
 import camelCaseKeysDeep from 'camelcase-keys-deep'
 import decamelizeKeysDeep from 'decamelize-keys-deep'
 
 function configuration(onComplete) {
   return {
-    delimiter: "",	// auto-detect
-    newline: "",	// auto-detect
+    delimiter: '',  // auto-detect
+    newline: '',  // auto-detect
     quoteChar: '"',
     header: true,
     dynamicTyping: true,
