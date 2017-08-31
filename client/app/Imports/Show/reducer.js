@@ -8,6 +8,7 @@ export const initialState = {
     importId: '',
     yearsMonths: []
   },
+  categories: {},
   month: today.getMonth() + 1,
   year: today.getFullYear()
 }
@@ -17,6 +18,13 @@ const reducerMap = {
     return {
       ...state,
       transactionsImport: action.payload
+    }
+  },
+
+  [actions.SET_CATEGORIES](state, action) {
+    return {
+      ...state,
+      categories: action.payload
     }
   },
 

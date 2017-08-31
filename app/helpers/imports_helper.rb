@@ -29,8 +29,23 @@ module ImportsHelper
 
     {
       import_id: import.id,
-      transactions: transactions,
+      transactions: group_into_categories(transactions),
       years_months: import.years_months_collection
     }
+  end
+
+  def group_into_categories(transactions)
+    groups = CATEGORY_GROUPS.deep_dup
+    transactions.each do |transaction|
+      category = CATEGORY_GROUP_MAP[transaction.category]
+
+      if groups[category]
+        groups[category] << transaction
+      else
+        groups['none'] << transaction
+      end
+    end
+
+    groups
   end
 end

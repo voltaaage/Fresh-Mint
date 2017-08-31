@@ -4,13 +4,16 @@ import {
   Accordion,
   AccordionPanel,
   Box,
+  CurrencyIcon,
   Header,
   Heading,
+  MultipleIcon,
   Section,
-  Tabs,
   Tab,
   Table,
-  TableRow
+  TableRow,
+  Tabs,
+  Value,
 } from 'grommet'
 import {
   Button,
@@ -20,6 +23,7 @@ import {
 
 import actions from './actions'
 import TransactionTable from './transactionTable.jsx'
+import { calculateTotalCosts, formatTitle } from './util'
 
 class Import extends Component {
   constructor(props, context) {
@@ -59,21 +63,54 @@ class Import extends Component {
     return this.context.store.getState().imports.show
   }
 
-  renderTransactions() {
-    return this.state.transactionsImport.transactions.map((transaction) => {
-      const transactionDate = new Date(transaction.date)
-      return (
-        <TableRow key={transaction.id}>
-          <td>{transactionDate.toDateString()}</td>
-          <td>{transaction.description}</td>
-          <td>{transaction.amount}</td>
-          <td>{transaction.category}</td>
-          <td>{transaction.originalDescription}</td>
-          <td>{transaction.notes}</td>
-          <td>{transaction.transactionType}</td>
-        </TableRow>
+  renderCategories() {
+    const categories = this.state.transactionsImport.transactions
+    let categoryTransactions = []
+    for (let category in categories) {
+      const transactions = categories[category].map((value, key) => (value))
+      categoryTransactions.push(
+        <Section
+          pad='medium'
+          key={category}
+        >
+          <Heading
+            tag='h3'
+            uppercase={true}
+            size='medium'
+          >
+            {formatTitle(category)}
+          </Heading>
+          {this.renderCategorySummary(transactions)}
+          <TransactionTable transactions={transactions} />
+        </Section>
       )
-    })
+    }
+    return categoryTransactions
+  }
+
+  renderCategorySummary(transactions) {
+    return (
+      <Box
+        direction='row'
+      >
+        <Box pad='small'>
+          <Value
+            label='Cost ($)'
+            size='small'
+            value={calculateTotalCosts(transactions)}
+            icon={<CurrencyIcon />}
+          />
+        </Box>
+        <Box pad='small'>
+          <Value
+            label='# of Transactions'
+            size='small'
+            value={transactions.length}
+            icon={<MultipleIcon />}
+          />
+        </Box>
+      </Box>
+    )
   }
 
   renderYears() {
@@ -93,7 +130,7 @@ class Import extends Component {
   renderMonths(yearMonths) {
     return yearMonths.months.map(month => (
       <Button
-        bsSize="small"
+        bsSize='small'
         key={month}
         onClick={this.onMonthClick(month, yearMonths.year)}
       >
@@ -104,30 +141,27 @@ class Import extends Component {
 
   render() {
     return (
-      <Section className="projectsImport__wrapper">
-        <Header pad="medium">
+      <Section className='projectsImport__wrapper'>
+        <Header pad='medium'>
           <Heading>Import Transactions</Heading>
         </Header>
         <Accordion>
-          <AccordionPanel heading="Months">
+          <AccordionPanel heading='Months'>
             <Box
-              align="center"
-              colorIndex="light-2"
-              direction="row"
-              justify="start"
-              margin="small"
-              pad="small"
+              align='center'
+              colorIndex='light-2'
+              direction='row'
+              justify='start'
+              margin='small'
+              pad='small'
             >
               {this.renderYears()}
             </Box>
           </AccordionPanel>
         </Accordion>
-        <Tabs justify="start">
-          <Tab title="Transactions">
-            <TransactionTable transactions={this.state.transactionsImport.transactions} />
-          </Tab>
-          <Tab title="Categories">
-            test
+        <Tabs justify='start'>
+          <Tab title='Transactions'>
+            {this.renderCategories()}
           </Tab>
         </Tabs>
       </Section>
