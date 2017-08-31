@@ -4,16 +4,11 @@ import {
   Accordion,
   AccordionPanel,
   Box,
-  CurrencyIcon,
   Header,
   Heading,
-  MultipleIcon,
   Section,
   Tab,
-  Table,
-  TableRow,
-  Tabs,
-  Value,
+  Tabs
 } from 'grommet'
 import {
   Button,
@@ -22,8 +17,9 @@ import {
 } from 'react-bootstrap'
 
 import actions from './actions'
-import TransactionTable from './transactionTable.jsx'
-import { calculateTotalCosts, formatTitle } from './util'
+import TransactionTable from './transactionTable'
+import CategorySummary from './categorySummary'
+import { formatTitle } from './util'
 
 class Import extends Component {
   constructor(props, context) {
@@ -65,52 +61,27 @@ class Import extends Component {
 
   renderCategories() {
     const categories = this.state.transactionsImport.transactions
-    let categoryTransactions = []
-    for (let category in categories) {
-      const transactions = categories[category].map((value, key) => (value))
+    const categoryTransactions = []
+
+    Object.keys(categories).forEach((category) => {
+      const transactions = categories[category].map(value => (value))
       categoryTransactions.push(
         <Section
-          pad='medium'
+          pad="medium"
           key={category}
         >
           <Heading
-            tag='h3'
-            uppercase={true}
-            size='medium'
+            tag="h3"
+            size="medium"
           >
             {formatTitle(category)}
           </Heading>
-          {this.renderCategorySummary(transactions)}
+          <CategorySummary transactions={transactions} />
           <TransactionTable transactions={transactions} />
         </Section>
       )
-    }
+    })
     return categoryTransactions
-  }
-
-  renderCategorySummary(transactions) {
-    return (
-      <Box
-        direction='row'
-      >
-        <Box pad='small'>
-          <Value
-            label='Cost ($)'
-            size='small'
-            value={calculateTotalCosts(transactions)}
-            icon={<CurrencyIcon />}
-          />
-        </Box>
-        <Box pad='small'>
-          <Value
-            label='# of Transactions'
-            size='small'
-            value={transactions.length}
-            icon={<MultipleIcon />}
-          />
-        </Box>
-      </Box>
-    )
   }
 
   renderYears() {
@@ -130,7 +101,7 @@ class Import extends Component {
   renderMonths(yearMonths) {
     return yearMonths.months.map(month => (
       <Button
-        bsSize='small'
+        bsSize="small"
         key={month}
         onClick={this.onMonthClick(month, yearMonths.year)}
       >
@@ -141,26 +112,26 @@ class Import extends Component {
 
   render() {
     return (
-      <Section className='projectsImport__wrapper'>
-        <Header pad='medium'>
+      <Section className="projectsImport__wrapper">
+        <Header pad="medium">
           <Heading>Import Transactions</Heading>
         </Header>
         <Accordion>
-          <AccordionPanel heading='Months'>
+          <AccordionPanel heading="Months">
             <Box
-              align='center'
-              colorIndex='light-2'
-              direction='row'
-              justify='start'
-              margin='small'
-              pad='small'
+              align="center"
+              colorIndex="light-2"
+              direction="row"
+              justify="start"
+              margin="small"
+              pad="small"
             >
               {this.renderYears()}
             </Box>
           </AccordionPanel>
         </Accordion>
-        <Tabs justify='start'>
-          <Tab title='Transactions'>
+        <Tabs justify="start">
+          <Tab title="Transactions">
             {this.renderCategories()}
           </Tab>
         </Tabs>

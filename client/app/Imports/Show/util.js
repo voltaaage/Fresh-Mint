@@ -9,8 +9,8 @@ export function formatTitle(title) {
 }
 
 export function calculateTotalCosts(transactions) {
-  const total = _.reduce(transactions, function(sum, transaction) {
-    if (transaction.transactionType == 'credit') {
+  const total = _.reduce(transactions, (sum, transaction) => {
+    if (transaction.transactionType === 'credit') {
       return sum - transaction.amount
     }
     return sum + transaction.amount

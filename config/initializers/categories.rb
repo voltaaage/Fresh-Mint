@@ -65,7 +65,6 @@ CATEGORY_GROUP_MAP = {
   'Service & Parts': 'Purchases',
   'Service Fee': 'Purchases',
   'Shipping': 'Purchases',
-  'Shipping': 'Purchases',
   'Shopping': 'Purchases',
   'Sold Items': 'Purchases',
   'Sporting Goods': 'Purchases',
@@ -88,7 +87,5 @@ CATEGORY_GROUP_MAP = {
   'Taxes': 'None',
   'Transfer for Cash Spending': 'None',
   'Tuition': 'None',
-  'Uncategorized': 'None',
+  'Uncategorized': 'None'
 }.stringify_keys!
-
-

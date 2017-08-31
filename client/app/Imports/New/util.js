@@ -25,5 +25,5 @@ export function convertKeysToBackend(object) {
 }
 
 export function convertCsvResultToTransactions(result) {
-  return result.data.map((value, key) => (value))
+  return result.data.map(value => (value))
 }

@@ -13,7 +13,7 @@ class TransactionTable extends Component {
         <TableRow key={transaction.id}>
           <td>{transactionDate.toDateString()}</td>
           <td>{transaction.description}</td>
-          <td>{transaction.amount}</td>
+          <td>${transaction.amount}</td>
           <td>{transaction.category}</td>
           <td>{transaction.originalDescription}</td>
           <td>{transaction.notes}</td>
