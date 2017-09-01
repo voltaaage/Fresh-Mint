@@ -29,7 +29,7 @@ module ImportsHelper
 
     {
       import_id: import.id,
-      transactions: group_into_categories(transactions),
+      categories: group_into_categories(transactions),
       years_months: import.years_months_collection
     }
   end
@@ -42,7 +42,7 @@ module ImportsHelper
       if groups[category]
         groups[category] << transaction
       else
-        groups['none'] << transaction
+        groups['None'] << transaction
       end
     end
 

@@ -7,7 +7,7 @@ import {
   Value
 } from 'grommet'
 
-import { calculateTotalCosts } from './util'
+import { calculateTotalCosts } from '../util'
 
 const CategorySummary = props => (
   <Box direction="row" >
@@ -33,11 +33,17 @@ const CategorySummary = props => (
 CategorySummary.propTypes = {
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      amount: PropTypes.number,
+      category: PropTypes.string,
+      createdAt: PropTypes.string,
       date: PropTypes.string,
       description: PropTypes.string,
-      amount: PropTypes.number,
-      category: PropTypes.string
+      id: PropTypes.number,
+      importId: PropTypes.number,
+      notes: PropTypes.string,
+      originalDescription: PropTypes.string,
+      transactionType: PropTypes.string,
+      updatedAt: PropTypes.string
     })
   ).isRequired
 }

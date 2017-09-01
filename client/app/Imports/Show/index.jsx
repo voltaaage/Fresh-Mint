@@ -17,9 +17,7 @@ import {
 } from 'react-bootstrap'
 
 import actions from './actions'
-import TransactionTable from './transactionTable'
-import CategorySummary from './categorySummary'
-import { formatTitle } from './util'
+import TransactionsTab from './TransactionsTab'
 
 class Import extends Component {
   constructor(props, context) {
@@ -59,31 +57,6 @@ class Import extends Component {
     return this.context.store.getState().imports.show
   }
 
-  renderCategories() {
-    const categories = this.state.transactionsImport.transactions
-    const categoryTransactions = []
-
-    Object.keys(categories).forEach((category) => {
-      const transactions = categories[category].map(value => (value))
-      categoryTransactions.push(
-        <Section
-          pad="medium"
-          key={category}
-        >
-          <Heading
-            tag="h3"
-            size="medium"
-          >
-            {formatTitle(category)}
-          </Heading>
-          <CategorySummary transactions={transactions} />
-          <TransactionTable transactions={transactions} />
-        </Section>
-      )
-    })
-    return categoryTransactions
-  }
-
   renderYears() {
     const yearsMonths = this.state.transactionsImport.yearsMonths
     return yearsMonths.map(yearMonths => (
@@ -111,6 +84,7 @@ class Import extends Component {
   }
 
   render() {
+    const categories = this.state.transactionsImport.categories
     return (
       <Section className="projectsImport__wrapper">
         <Header pad="medium">
@@ -132,7 +106,7 @@ class Import extends Component {
         </Accordion>
         <Tabs justify="start">
           <Tab title="Transactions">
-            {this.renderCategories()}
+            <TransactionsTab categories={categories} />
           </Tab>
         </Tabs>
       </Section>

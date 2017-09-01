@@ -4,7 +4,7 @@ const today = new Date()
 
 export const initialState = {
   transactionsImport: {
-    transactions: [],
+    categories: [],
     importId: '',
     yearsMonths: []
   },
