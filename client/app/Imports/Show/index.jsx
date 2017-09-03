@@ -18,6 +18,7 @@ import {
 
 import actions from './actions'
 import TransactionsTab from './TransactionsTab'
+import SummaryTab from './SummaryTab'
 
 class Import extends Component {
   constructor(props, context) {
@@ -105,6 +106,9 @@ class Import extends Component {
           </AccordionPanel>
         </Accordion>
         <Tabs justify="start">
+          <Tab title="Summary">
+            <SummaryTab categories={categories} />
+          </Tab>
           <Tab title="Transactions">
             <TransactionsTab categories={categories} />
           </Tab>
