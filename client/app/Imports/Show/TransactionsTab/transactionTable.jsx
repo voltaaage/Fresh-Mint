@@ -14,10 +14,10 @@ class TransactionTable extends Component {
           <td>{transactionDate.toDateString()}</td>
           <td>{transaction.description}</td>
           <td>${transaction.amount}</td>
+          <td>{transaction.transactionType}</td>
           <td>{transaction.category}</td>
           <td>{transaction.originalDescription}</td>
           <td>{transaction.notes}</td>
-          <td>{transaction.transactionType}</td>
         </TableRow>
       )
     })
@@ -32,10 +32,10 @@ class TransactionTable extends Component {
             <th>DATE</th>
             <th>DESCRIPTION</th>
             <th>AMOUNT</th>
+            <th>TRANSACTION TYPE</th>
             <th>CATEGORY</th>
             <th>ORIGINAL DESCRIPTION</th>
             <th>NOTES</th>
-            <th>TRANSACTION TYPE</th>
           </tr>
         </thead>
         <tbody>
